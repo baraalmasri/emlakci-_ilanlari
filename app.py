@@ -4,7 +4,7 @@ from datetime import datetime
 
 app = Flask(__name__)
 # veritabani ile baglanma kodu
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///C:\\Users\\kullancı\\Desktop\\emlak\\blog.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///blog.db'
 db = SQLAlchemy(app)
 
 
