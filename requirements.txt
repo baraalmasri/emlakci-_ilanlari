@@ -8,3 +8,6 @@ Flask-WTF==0.14.3
 Jinja2==2.10.3
 WTForms==2.3.3
 Werkzeug==0.16.0
+Flask-Login==0.5.0
+Flask-Bootstrap==3.3.7.1
+Flask-LoginManager==1.1.6
