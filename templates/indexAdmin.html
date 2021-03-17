@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Clean Blog - Start Bootstrap Theme</title>
+    <title>Emlak - Start Bootstrap Theme</title>
 
     <!-- Bootstrap core CSS -->
     <link href="{{ url_for('static', filename='bootstrap.min.css') }}" rel="stylesheet">
@@ -30,7 +30,7 @@
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
     <div class="container">
-
+        <a class="navbar-brand" href="{{ url_for('index') }}">Hoş geldiniz </a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
                 data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -40,11 +40,14 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" style="color:black" href="{{ url_for('indexAdmin') }}">home page</a>
+                    <a class="nav-link" href="{{ url_for('indexAdmin') }}">home</a>
                 </li>
-
                 <li class="nav-item">
-                    <a class="nav-link" style="color:white" href="{{ url_for('adminboard') }}">back to dashboard</a>
+                    <a class="nav-link" href="{{ url_for('adminboard') }}">dashboard</a>
+
+                </li>
+                        <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('logout') }}">logout</a>
                 </li>
             </ul>
         </div>
@@ -52,14 +55,12 @@
 </nav>
 
 <!-- Page Header -->
-<header class="masthead" style="background-image: url('{{ url_for('static', filename='delete.jpg') }}')">
-
+<header class="masthead" style="background-image: url('{{ url_for('static', filename='emlak-bg.jpg') }}')">
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-md-10 mx-auto">
-                <div class="page-heading">
-                    <h1 style="color:black">İlanızı siliniz
-                        <span class="subheading">ev ilanı silebilirsiniz.</span></h1>
+                <div class="site-heading">
+                    <h1>Emlak İlanları</h1>
 
                 </div>
             </div>
@@ -69,31 +70,32 @@
 
 <!-- Main Content -->
 <div class="container">
+
     <div class="row">
+        <h1 class="post-preview">En son eklenlimiş ilanları </h1>
         <div class="col-lg-8 col-md-10 mx-auto">
-            <form name="addForm" id="addForm" method="POST" action="{{ url_for('deletepost') }}" novalidate>
-                <a class="navbar-brand" href="">
-                    <h2>
-                        sileceğiniz ilanı
-                        silmek için evin ilan No yazınız
-                    </h2>
+
+            {% for post in posts %}
+            <div class="post-preview">
+                <a href="{{ url_for('post', post_id=post.id) }}">
+
+                    <h4 class="post-title">
+                        ilanNo {{ post.id }} :
+                    </h4>
+
+                    <p class="post-title">
+                        {{ post.ev_adresi }}
+                    </p>
+                    <h3 class="post-subtitle">
+                        evin oda sayisi : {{ post.oda_sayisi }}
+                    </h3>
                 </a>
 
-
-                <div class="control-group">
-                    <div class="form-group col-xs-12 floating-label-form-group controls">
-                        <label>id</label>
-                        <input type="text" class="form-control" placeholder="evinin İlanNo yazınız " name="id" id="id"
-                               required data-validation-required-message="telefon numaranızı yazınız.">
-                        <p class="help-block text-danger"></p>
-                    </div>
-                </div>
-                <br>
-                <div id="success"></div>
-                <div class="form-group">
-                    <button type="submit" class="btn btn-secondary" id="sendMessageButton">Sil</button>
-                </div>
-            </form>
+                <p class="post-meta"> ev Fiyati veya kirasi {{ post.fiyat }} TL</p>
+                <h3 class="post-meta"> bu tarihte ilan edilmiş {{ post.date_posted.strftime('%B %d, %Y') }}</h3>
+            </div>
+            {% endfor %}
+            <hr>
         </div>
     </div>
 </div>
