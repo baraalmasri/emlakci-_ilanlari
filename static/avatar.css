@@ -1,0 +1,41 @@
+
+.avatar {
+    display: inline-block;
+    overflow: hidden;
+    line-height: 1;
+    vertical-align: middle;
+    background-color: var(--color-avatar-bg);
+    border-radius: 6px;
+    flex-shrink: 0;
+    box-shadow: 0 0 0 1px var(--color-avatar-border);
+}
+
+.avatar-user {
+    border-radius: 50%!important;
+}
+.rounded-2 {
+    border-radius: 6px!important;
+}
+
+img {
+    border-style: none;
+}
+.avatar-user {
+    border-radius: 50%!important;
+}
+.avatar {
+    display: inline-block;
+    overflow: hidden;
+    line-height: 1;
+    vertical-align: middle;
+    background-color: var(--color-avatar-bg);
+    border-radius: 6px;
+    flex-shrink: 0;
+    box-shadow: 0 0 0 1px var(--color-avatar-border);
+}
+
+
+img[Attributes Style] {
+    width: 200px;
+    height: 200px;
+}

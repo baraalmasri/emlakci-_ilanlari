@@ -1,0 +1,194 @@
+{% extends "bootstrap/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% block title %}
+profile
+{% endblock %}
+
+{% block styles %}
+{{super()}}
+
+
+<link rel="stylesheet" href="{{url_for('.static', filename='avatar.css')}}">
+<link crossorigin="anonymous" media="all"
+      integrity="sha512-oDd/zRd70xTilBt9+3Pc1+2Z8hlcfG7eQeFjLMayonKEml+i6KgFoG1ibLQHA1wM55KTOj+FSPxuDgLYfJ1exw=="
+      rel="stylesheet" href="https://github.githubassets.com/assets/frameworks-a0377fcd177bd314e2941b7dfb73dcd7.css">
+<link crossorigin="anonymous" media="all"
+      integrity="sha512-SRuhoBJxVWvoVbcn4lYn7KJaWwcHXn9h4H0891m3JgMq8l+7l9p1WFfheey+Bp/KmWNOXT0PVaj71TVuxN4ObA=="
+      rel="stylesheet" href="https://github.githubassets.com/assets/behaviors-491ba1a01271556be855b727e25627ec.css">
+<link crossorigin="anonymous" media="all"
+      integrity="sha512-io1ZPANtvjriRdENTBQY2TIglf5bUOenw9U+PlrYmzeRZvHJmHKq8BJxUAHMLwL+YhXHAwzRjZadOiJULGe1TA=="
+      rel="stylesheet" href="https://github.githubassets.com/assets/settings-8a8d593c036dbe3ae245d10d4c1418d9.css">
+<link crossorigin="anonymous" media="all"
+      integrity="sha512-tSD1afBYU3wIwXyYDGk9XEHpzh9KNUpufc0Eu+s+8cfiP6TVZUUxEiZci/allIvQfThbqi/CJapWsCf0etmWyA=="
+      rel="stylesheet" href="https://github.githubassets.com/assets/github-b520f569f058537c08c17c980c693d5c.css">
+
+{% endblock %}
+
+{% block content %}
+
+<div class="container  ">
+
+    <div class="  navbar-right ">
+        </br>
+        <h1>Edit Profile</h1>
+
+    </div>
+
+
+    <hr>
+    <a class="btn btn-default" href="{{ url_for('adminboard') }}">&nbsp;&nbsp;back to Panel&nbsp;&nbsp;</a>
+    <div class="row">
+        <!-- left column -->
+        <!-------------------------------------------------------------------------------------------------->
+
+        <!--        <div class="col-md-3">-->
+        <!--            </br></br></br></br></br></br></br></br>-->
+
+
+        <!--            -->
+        <!--            <div class="text-center">-->
+        <!--                <img src="//placehold.it/100" class="avatar img-circle" alt="avatar">-->
+        <!--                <h6>Upload a different photo...</h6>-->
+
+        <!--                <input type="file" class="form-control"  name="pic" />-->
+        <!--            </div>-->
+        <!--        </div>-->
+        <div class="col-md-3">
+            </br></br></br>
+            <dl>
+                <dt><label class="d-block mb-2">Profile picture</label></dt>
+                <dd class="avatar-upload-container clearfix position-relative">
+
+
+                    <div class="avatar-upload">
+
+
+                        <img class="avatar rounded-2 avatar-user"
+                             src="{{ url_for('static', filename='photo.jpg') }}"
+                             width="200" height="200" alt=" ">
+
+                        <!--edit button block start -->
+                        <div class="position-absolute color-bg-primary rounded-2 color-text-primary left-0 bottom-0 ">
+                            <label class="btn btn-default rounded-3 left-0  " >
+                                <svg class="octicon octicon-pencil" height="16" viewBox="0 0 16 16" version="1.1"
+                                     width="15" aria-hidden="true">
+                                    <path fill-rule="evenodd"
+                                          d="M11.013 1.427a1.75 1.75 0 012.474 0l1.086 1.086a1.75 1.75 0 010 2.474l-8.61 8.61c-.21.21-.47.364-.756.445l-3.251.93a.75.75 0 01-.927-.928l.929-3.25a1.75 1.75 0 01.445-.758l8.61-8.61zm1.414 1.06a.25.25 0 00-.354 0L10.811 3.75l1.439 1.44 1.263-1.263a.25.25 0 000-.354l-1.086-1.086zM11.189 6.25L9.75 4.81l-6.286 6.287a.25.25 0 00-.064.108l-.558 1.953 1.953-.558a.249.249 0 00.108-.064l6.286-6.286z"></path>
+                                </svg>
+                                Edit
+                                <form action="http://localhost:5000/upload" enctype="multipart/form-data" method="POST">
+
+                                    <input class="btn btn-default  position-absolute" type="file" name="pic" hidden>
+                                    <input class="btn btn-default position-absolute     " type="submit" value="save"/>
+                                </form>
+                            </label>
+
+
+                        </div>
+
+
+                        <!--edit button block end -->
+
+
+                    </div>
+                </dd>
+            </dl>
+        </div>
+
+
+        <!-------------------------------------------------------------------------------------------------->
+        <!-- edit form column -->
+        <div class="col-md-9 personal-info">
+            <div class="alert alert-info alert-dismissable">
+                <a class="panel-close close" data-dismiss="alert">×</a>
+                <i class="fa fa-coffee"></i>
+                This is an <strong>.alert</strong>. Use this to show important messages to the user.
+            </div>
+
+            <h3>Personal info</h3>
+            <form class="form-horizontal" method="POST" role="form" action="{{ url_for('profile_update') }}">
+                <div class="form-group">
+                    <label class="col-lg-3 control-label">First name:</label>
+                    <div class="col-lg-8">
+                        <input class="form-control" id="fname" name="fname" type="text" value="{{userData.fname}}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-3 control-label">Last name:</label>
+                    <div class="col-lg-8">
+                        <input class="form-control" id="lname" name="lname" type="text" value="{{userData.lname}}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-3 control-label">phone Number:</label>
+                    <div class="col-lg-8">
+                        <input class="form-control" id="fnumber" name="fnumber" type="text"
+                               value="{{userData.fnumber}}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-3 control-label">Email:</label>
+                    <div class="col-lg-8">
+                        <input class="form-control" id="email" name="email" type="text" value="{{userData.email}}">
+                    </div>
+                </div>
+
+                <!--                <div class="form-group">-->
+                <!--                    <label class="col-lg-3 control-label">Time Zone:</label>-->
+                <!--                    <div class="col-lg-8">-->
+                <!--                        <div class="ui-select">-->
+                <!--                            <select id="user_time_zone" class="form-control">-->
+                <!--                                <option value="Hawaii">(GMT-10:00) Hawaii</option>-->
+                <!--                                <option value="Alaska">(GMT-09:00) Alaska</option>-->
+                <!--                                <option value="Pacific Time (US &amp; Canada)">(GMT-08:00) Pacific Time (US &amp;-->
+                <!--                                    Canada)-->
+                <!--                                </option>-->
+                <!--                                <option value="Arizona">(GMT-07:00) Arizona</option>-->
+                <!--                                <option value="Mountain Time (US &amp; Canada)">(GMT-07:00) Mountain Time (US &amp;-->
+                <!--                                    Canada)-->
+                <!--                                </option>-->
+                <!--                                <option value="Central Time (US &amp; Canada)" selected="selected">(GMT-06:00) Central-->
+                <!--                                    Time (US &amp; Canada)-->
+                <!--                                </option>-->
+                <!--                                <option value="Eastern Time (US &amp; Canada)">(GMT-05:00) Eastern Time (US &amp;-->
+                <!--                                    Canada)-->
+                <!--                                </option>-->
+                <!--                                <option value="Indiana (East)">(GMT-05:00) Indiana (East)</option>-->
+                <!--                            </select>-->
+                <!--                        </div>-->
+                <!--                    </div>-->
+                <!--                </div>-->
+
+                <div class="form-group">
+                    <label class="col-md-3 control-label">Username:</label>
+                    <div class="col-md-8">
+                        <input class="form-control" id="username" name="username" type="text"
+                               value="{{userData.username}}">
+                    </div>
+                </div>
+                <!--                <div class="form-group">-->
+                <!--                    <label class="col-md-3 control-label">Password:</label>-->
+                <!--                    <div class="col-md-8">-->
+                <!--                        <input class="form-control" type="password" value="************">-->
+                <!--                    </div>-->
+                <!--                </div>-->
+                <!--                <div class="form-group">-->
+                <!--                    <label class="col-md-3 control-label">Confirm password:</label>-->
+                <!--                    <div class="col-md-8">-->
+                <!--                        <input class="form-control" type="password" value="************">-->
+                <!--                    </div>-->
+                <!--                </div>-->
+                <div class="form-group">
+                    <label class="col-md-3 control-label"></label>
+                    <div class="col-md-8">
+                        <input type="submit" class="btn btn-primary" value="Save Changes">
+                        <span></span>
+                        <input type="reset" class="btn btn-default" value="Cancel">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<hr>
+{% endblock %}

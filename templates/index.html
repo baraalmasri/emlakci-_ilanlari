@@ -39,14 +39,12 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
-           <li class="nav-item">
+                <li class="nav-item">
                     <a class="nav-link" href="{{ url_for('index') }}">ilanları</a>
                 </li>
 
 
-
-
-                        <li class="nav-item">
+                <li class="nav-item">
                     <a class="nav-link" href="{{ url_for('login') }}">giriş yap</a>
                 </li>
             </ul>
@@ -80,19 +78,21 @@
                 <a href="{{ url_for('post', post_id=post.id) }}">
 
                     <h4 class="post-title">
-                        ilanNo {{ post.id }} :
+                        {{ post.ev_adresi }}
                     </h4>
 
                     <p class="post-title">
-                        {{ post.ev_adresi }}
+                        evin oda sayisi : {{ post.oda_sayisi }}
                     </p>
                     <h3 class="post-subtitle">
-                        evin oda sayisi : {{ post.oda_sayisi }}
+                        ev Fiyati veya kirasi {{ post.fiyat }} TL
+
                     </h3>
                 </a>
 
-                <p class="post-meta"> ev Fiyati veya kirasi {{ post.fiyat }} TL</p>
-                <h3 class="post-meta"> bu tarihte ilan edilmiş {{ post.date_posted.strftime('%B %d, %Y') }}</h3>
+                <p class="post-meta">bu tarihte ilan edilmiş {{ post.date_posted.strftime('%B %d, %Y') }} </p>
+                <h3 class="post-meta">
+                    ilanNo {{ post.id }} :</h3>
             </div>
             {% endfor %}
             <hr>
